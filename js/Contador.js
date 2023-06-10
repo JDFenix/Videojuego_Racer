@@ -17,5 +17,7 @@ class Contador {
         let div = document.getElementById("Contador");
         div.innerHTML = `<h1>Puntaje: ${this.valor}</h1>`;
     }
+
+    
 }
 

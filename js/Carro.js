@@ -51,13 +51,7 @@ class Carro {
    colisionChoque() {
     var width = window.screen.width;
     var height = window.screen.height;
-    var objetoAnchura = "100px"
-    var objetoAltura = "100px"
-  
-    if (this.posicionX <= 0 || this.posicionX + objetoAnchura >= width ||
-        this.posicionY <= 0 || this.posicionY + objetoAltura >= height) {
-      console.log("¡Has chocado!");
-    }
+
   }
 
     finPartida() {

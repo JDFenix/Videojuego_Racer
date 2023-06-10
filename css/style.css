@@ -1,0 +1,54 @@
+#Contador {
+    color: #000000;
+    font-size: x-large;
+    font-family: cursive;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translate(-20%);
+}
+
+#start {
+    background-color: rgb(47, 197, 185);
+    color: rgb(255, 255, 255);
+    padding: 50px;
+    margin-left: 45%;
+    border-bottom: 25%;
+    font-family: cursive;
+    border-radius: 8px;
+    border-width: 4px;
+
+}
+
+/* 
+#start:hover {
+    animation: botonIncio 2s ease-in-out infinite;
+}
+
+@keyframes botonIncio {
+    0% {
+        border-color: blue;
+    }
+
+    25% {
+        border-color: rgb(0, 255, 55);
+    }
+
+    50% {
+        border-color: rgb(198, 189, 4);
+    }
+
+    75% {
+        border-color: rgb(255, 13, 0);
+    }
+
+    100% {
+        border-color: rgb(255, 0, 191);
+    }
+} */
+
+body {
+    background-image: url('/Resources/Carretera.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

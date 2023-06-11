@@ -1,16 +1,21 @@
 let carro = new Carro()
+
 carro.mostrarCorazones()
 
 function Iniciar() {
-    let control = new Control()
-    control.moverAuto()
+    let sonido = new Sonido();
+    sonido.sonidoInicio();
 
-    let sonido = new Sonido()
-    sonido.sonidoInicio()
+    let contadors = new Contador();
+    contadors.iniciarContador();
+    
+    carro.actualizarGif()
 
-    let contador = new Contador()
-    contador.iniciarContador()
+   
 }
+
+
+
 
 
 

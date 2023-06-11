@@ -1,5 +1,5 @@
 cambios dia 11/06:
-*el metodo mver auto que estaba en Control se movio a Carro
+*el metodo moverAuto que estaba en la clase Control se movio a Carro por ende se elimino la clase Control
 
 *PENDIENTE: 
 

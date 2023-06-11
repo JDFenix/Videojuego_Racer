@@ -20,7 +20,6 @@ class Carro {
 
     /// mmuestra el gif pero no lo actualiza envia al else directamente 
     actualizarGif() {
-
         let img = this.crearGif()
         let contador
         let valor

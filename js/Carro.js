@@ -1,10 +1,8 @@
-
 class Carro {
     posicionX = 0;
     posicionY = 0;
     pasos = 30;
     vidas = 3;
-    src = ''
 
 
     crearGif() {
@@ -43,30 +41,60 @@ class Carro {
 
 
     moverAuto = (img) => {
-
         document.addEventListener("keydown", (event) => {
 
             if (event.key == "d" || event.key == 'ArrowRight') {
-                this.posicionX += this.pasos;
-                img.style.left = `${this.posicionX}px`;
 
+                if (this.posicionX + img.offsetWidth <= window.innerWidth) {
+                    this.posicionX += this.pasos;
+                }
             } else if (event.key == "a" || event.key == 'ArrowLeft') {
-                this.posicionX -= this.pasos;
-                img.style.left = `${this.posicionX}px`;
+
+                if (this.posicionX >= 0) {
+                    this.posicionX -= this.pasos;
+                }
 
             } else if (event.key == "w" || event.key == 'ArrowUp') {
-                this.posicionY -= this.pasos;
-                img.style.top = `${this.posicionY}px`;
+
+                if (this.posicionY >= 0) {
+                    this.posicionY -= this.pasos;
+                }
 
             } else if (event.key == "s" || event.key == 'ArrowDown') {
-                this.posicionY += this.pasos;
-                img.style.top = `${this.posicionY}px`;
+
+                if (this.posicionY + img.offsetHeight <= window.innerHeight) {
+                    this.posicionY += this.pasos;
+                }
+                
             }
+
+            img.style.left = `${this.posicionX}px`;
+            img.style.top = `${this.posicionY}px`;
         });
+       
     }
 
 
+    avisoColision() {
+        if (
+            this.posicionX <= 0 ||
+            this.posicionX + img.offsetWidth >= window.innerWidth ||
+            this.posicionY <= 0 ||
+            this.posicionY + img.offsetHeight >= window.innerHeight
+        ) {
+            this.perdder();
+        }
+    }
+
+    perdder() {
+        console.log("hello")
+    }
+
+
+
     mostrarCorazones() {
+
+
         var corazon1 = document.createElement("img");
         corazon1.src = 'Resources/Gameplay/Heart.png';
         corazon1.style.width = '100px';
@@ -88,8 +116,8 @@ class Carro {
 
 
 
-
     perderVidas(corazon3, corazon2, corazon1) {
+
         if (this.vidas === 2) {
             document.body.removeChild(corazon3);
         } else if (this.vidas === 1) {
@@ -99,11 +127,6 @@ class Carro {
             this.finPartida();
         }
     }
-
-    choqueAuto() {
-
-    }
-
 
     finPartida() {
         alert("Juego terminado");

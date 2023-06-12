@@ -10,8 +10,8 @@ function Iniciar() {
     contadors.iniciarContador();
     
     carro.actualizarGif()
+    carro.generarCarroEnemigo()
 
-   
 }
 
 

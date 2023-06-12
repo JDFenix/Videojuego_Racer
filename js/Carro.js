@@ -9,7 +9,8 @@ class Carro {
         var img = document.createElement("img");
         img.style.width = '150px';
         img.style.position = 'absolute';
-        img.style.marginLeft = '20%';
+        img.style.top = '80%';
+        img.style.left = window.innerHeight;
         document.body.appendChild(img);
 
         return img
@@ -29,11 +30,11 @@ class Carro {
 
 
         if (valor <= 200) {
-            img.src = 'Resources/Gameplay/carro_lvl1.gif';
+            img.src = 'Resources/Gameplay/carro_lvl1.jpeg';
         } else if (valor > 200 && valor <= 300) {
             img.src = 'Resources/Gameplay/Carro_lvl2.gif';
         } else {
-            img.src = 'Resources/Gameplay/carro_avanzando.gif';
+            img.src = 'Resources/Gameplay/Carro_avanzado.png';
         }
 
         this.moverAuto(img)
@@ -65,13 +66,13 @@ class Carro {
                 if (this.posicionY + img.offsetHeight <= window.innerHeight) {
                     this.posicionY += this.pasos;
                 }
-                
+
             }
 
             img.style.left = `${this.posicionX}px`;
             img.style.top = `${this.posicionY}px`;
         });
-       
+
     }
 
 
@@ -127,8 +128,54 @@ class Carro {
             this.finPartida();
         }
     }
-
     finPartida() {
         alert("Juego terminado");
     }
+
+
+    generarCarroEnemigo = () => {
+        setInterval(() => {
+            if (this.vidas > 0) {
+                var carroObstaculo = document.createElement("img");
+                let y = 0;
+                let x = this.posicionAleatoriaX();
+                carroObstaculo.style.width = '150px';
+                carroObstaculo.style.position = 'absolute';
+                carroObstaculo.style.top = y + 'px';
+                carroObstaculo.style.left = x + "px";
+                carroObstaculo.src = this.generarCarroEnemigoAleatorio();
+
+                document.body.appendChild(carroObstaculo);
+
+
+
+                let intervalStep = setInterval(() => {
+                    y += 5;
+                    if (y >= window.innerHeight - 150) {
+                        document.body.removeChild(carroObstaculo);
+                    } else {
+                        carroObstaculo.style.top = y + 'px';
+                    }
+                }, 100);
+            }
+        }, 5000);
+    }
+
+
+    posicionAleatoriaX() {
+        let numRandom = Math.floor(Math.random() * window.innerWidth)
+        return numRandom
+
+    }
+
+
+
+    generarCarroEnemigoAleatorio() {
+        let arrayPngs = ["/Resources/Gameplay/Carro enemigo 1.png", "/Resources/Gameplay/Carro enemigo 2.jpeg", "/Resources/Gameplay/Carro enemigo 3.jpeg"]
+        let numRandom = Math.floor(Math.random() * arrayPngs.length)
+        return arrayPngs[numRandom]
+    }
+
+
+
 }

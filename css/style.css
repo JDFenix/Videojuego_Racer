@@ -1,5 +1,5 @@
 #Contador {
-    color: #000000;
+    color: #ddee89;
     font-size: x-large;
     font-family: cursive;
     position: fixed;
@@ -47,8 +47,13 @@
     }
 } */
 
-/* body {
-    background-image: url('/Resources/Carretera.gif');
+body {
+    background-image: url('/Resources/Carretera.jpeg');
+    width: 80px;
     background-repeat: no-repeat;
     background-size: cover;
-  } */
+}
+
+body {
+    background-color: aquamarine;
+}

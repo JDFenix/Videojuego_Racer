@@ -1,0 +1,7 @@
+canvas{
+    border: 5px solid black;
+    margin-left: 25%;
+    background-image: url(/Resources/Carretera.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

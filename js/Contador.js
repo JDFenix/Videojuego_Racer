@@ -11,6 +11,7 @@ class Contador {
             numRandom = Math.floor(Math.random() * incrementoAleatorio.length)
             this.valor += incrementoAleatorio[numRandom];
             this.mostrarValor()
+        
         }, 150);
 
 
@@ -19,7 +20,7 @@ class Contador {
     mostrarValor() {
         let div = document.getElementById("Contador");
         
-        div.innerHTML = `<h1>Puntaje: ${this.valor}</h1>`;
+        div.innerHTML = `<h1>Puntaje: ${this.valor}</h1>`; 
         
     }
 

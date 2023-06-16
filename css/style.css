@@ -7,18 +7,16 @@
     right: 0;
     transform: translate(-20%);
 }
-
-#start {
-    background-color: rgb(47, 197, 185);
-    color: rgb(255, 255, 255);
-    padding: 50px;
-    margin-left: 45%;
-    border-bottom: 25%;
+#daño{
+    color: lawngreen;
+    font-size: medium;
     font-family: cursive;
-    border-radius: 8px;
-    border-width: 4px;
+    position: absolute;
 
 }
+
+
+
 
 /* 
 #start:hover {
@@ -56,4 +54,8 @@ body {
 
 body {
     background-color: aquamarine;
+}
+
+#corazon{
+    width: 100px;
 }

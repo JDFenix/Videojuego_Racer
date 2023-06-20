@@ -22,7 +22,7 @@
     width: 600px;
     height: 96%;
     margin-left: 30%;
-    border: rgb(226, 255, 10) solid 5px;
+    border: rgb(30, 31, 28) solid 5px;
 }
 
 /* 
@@ -53,7 +53,7 @@
 } */
 
 body {
-    background-image: url('/Resources/Carretera.jpeg');
+   
     width: 80px;
     background-repeat: no-repeat;
     background-size: cover;

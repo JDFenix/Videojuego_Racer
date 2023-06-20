@@ -15,11 +15,12 @@ class Carro {
     }
 
     crearGif() {
+        let div = document.getElementById("carretera");
         let img = document.createElement("img");
-        img.style.width = "150px";
+        img.style.width = "130px";
         img.style.position = "absolute";
         img.style.top = "80%";
-        img.style.left = "0";
+        img.style.left = div.offsetWidth + 'px';
         document.body.appendChild(img);
         return img;
     }
@@ -36,8 +37,14 @@ class Carro {
             } else if (valor > 800 && valor <= 1400) {
                 img.src = "Resources/Gameplay/Carro_lvl2.jpeg";
 
-            } else if (valor > 1400) {
+            } else if (valor > 1400  &&  valor <=1800) {
                 img.src = "Resources/Gameplay/Carro_avanzado.png";
+
+            } else if (valor > 1800 && valor < 2300) {
+                img.src = "Resources/Gameplay/Carro_lvl4.png";
+
+            }else if (valor > 2300) {
+                img.src = "Resources/Gameplay/Carro_lvl5.png";
 
             }
         }, 150);
@@ -58,10 +65,10 @@ class Carro {
 
             div.appendChild(imgItemHeart);
 
-            let intervalId = setInterval(() => {
+            setInterval(() => {
                 y += 45;
 
-                if (y >= window.innerHeight-100) {
+                if (y >= window.innerHeight - 100) {
                     div.removeChild(imgItemHeart);
                 } else {
                     this.avisoColisionItem(imgItemHeart, img, div);
@@ -69,7 +76,7 @@ class Carro {
 
                 imgItemHeart.style.top = y + "px";
             }, 150);
-        }, 2000);
+        }, 22000);
     };
 
     avisoColisionItem(obstaculo, img, div) {
@@ -82,7 +89,7 @@ class Carro {
             jugadorMedidas.top < obstaculoMedidas.bottom &&
             jugadorMedidas.bottom > obstaculoMedidas.top
         ) {
-            if (this.vidas < 100) {
+            if (this.vidas <= 100) {
                 this.vidas += 25;
                 div.removeChild(obstaculo);
             }
@@ -133,17 +140,16 @@ class Carro {
             let y = 0;
             let imgobstaculo = document.createElement("img");
             imgobstaculo.src = this.generarCarroEnemigoAleatorio();
-            imgobstaculo.style.width = "135px";
-            imgobstaculo.style.height = "135px";
+            imgobstaculo.style.width = "122px";
             imgobstaculo.style.top = y + "px";
             imgobstaculo.style.position = "absolute";
             imgobstaculo.style.left = x + "px";
 
             div.appendChild(imgobstaculo);
 
-           setInterval(() => {
+            setInterval(() => {
                 y += 25;
-                if (y >= window.innerHeight-100) {
+                if (y >= window.innerHeight - 100) {
                     div.removeChild(imgobstaculo);
                 } else {
                     imgobstaculo.style.top = y + "px";
@@ -151,7 +157,7 @@ class Carro {
             }, 100);
 
             this.avisoColision(img, imgobstaculo);
-        }, 1800);
+        }, 1900);
     };
 
     avisoColision(obstaculo, img) {
@@ -168,29 +174,32 @@ class Carro {
                 if (this.vidas > 0) {
                     this.vidas -= 4;
                 }
-                this.perderVidas();
+                this.finPartida();
                 this.mostrarPorcentajeVida();
             }
         }, 100);
     }
 
-    perderVidas() {
-        if (this.vidas === 0) {
-            this.finPartida();
-        }
-    }
 
     mostrarPorcentajeVida() {
         let div = document.getElementById("daño");
+        if (this.vidas >= 0 && this.vidas <= 100) {
+            setInterval(() => {
+                div.innerHTML = `<h1>DAÑO RECIBIDO: ${this.vidas}</h1>`;
+            }, 150)
+        } else {
 
-        setInterval(()=>{
-            div.innerHTML = `<h1>DAÑO RECIBIDO: ${this.vidas}</h1>`;
-        },150)
+        }
+
 
     }
 
     finPartida() {
-        alert("La partida ha terminado");
+
+        if (this.vidas <= 0) {
+            alert("La partida ha terminado");
+            window.location.href = 'menuInicio.html '
+        }
     }
 
     posicionAleatoriaX() {
@@ -203,8 +212,15 @@ class Carro {
             "/Resources/Gameplay/Carro enemigo 1.png",
             "/Resources/Gameplay/Carro enemigo 2.jpeg",
             "/Resources/Gameplay/Carro enemigo 3.jpeg",
+            "/Resources/Gameplay/Carro enemigo 4.jpeg",
+            "/Resources/Gameplay/Carro enemigo 5.jpeg",
+            "/Resources/Gameplay/Carro enemigo 6.jpeg",
+            "/Resources/Gameplay/Carro enemigo 7.jpeg",
+            "/Resources/Gameplay/Carro enemigo 8.jpeg",
+            "/Resources/Gameplay/Carro enemigo 9.jpeg",
         ];
         let numRandom = Math.floor(Math.random() * arrayImg.length);
         return arrayImg[numRandom];
     }
+
 }

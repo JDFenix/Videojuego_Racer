@@ -3,6 +3,7 @@ class Carro {
     vidas = 100;
     posicionX = 0;
     posicionYJugador = 0;
+    partidaTerminada = false
     puntaje;
 
     iniciarPartida() {
@@ -17,7 +18,7 @@ class Carro {
     crearGif() {
         let div = document.getElementById("carretera");
         let img = document.createElement("img");
-        img.style.width = "130px";
+        img.style.width = "80px";
         img.style.position = "absolute";
         img.style.top = "80%";
         img.style.left = div.offsetWidth + 'px';
@@ -37,13 +38,13 @@ class Carro {
             } else if (valor > 800 && valor <= 1400) {
                 img.src = "Resources/Gameplay/Carro_lvl2.jpeg";
 
-            } else if (valor > 1400  &&  valor <=1800) {
+            } else if (valor > 1400 && valor <= 1800) {
                 img.src = "Resources/Gameplay/Carro_avanzado.png";
 
             } else if (valor > 1800 && valor < 2300) {
                 img.src = "Resources/Gameplay/Carro_lvl4.png";
 
-            }else if (valor > 2300) {
+            } else if (valor > 2300) {
                 img.src = "Resources/Gameplay/Carro_lvl5.png";
 
             }
@@ -97,41 +98,40 @@ class Carro {
     }
     moverAuto = (img) => {
         let div = document.getElementById("carretera");
+        const divRect = div.getBoundingClientRect();
+        const imgRect = img.getBoundingClientRect();
+    
         if (this.vidas > 0) {
             document.addEventListener("keydown", (event) => {
-
+                let nuevaPosicionX = this.posicionX;
+                let nuevaPosicionY = this.posicionYJugador;
+    
                 if (event.key == "d" || event.key == 'ArrowRight') {
-
-                    if (this.posicionX + img.offsetWidth <= window.innerWidth) {
-                        this.posicionX += this.pasos;
-                    }
+                    nuevaPosicionX += this.pasos;
                 } else if (event.key == "a" || event.key == 'ArrowLeft') {
-
-                    if (this.posicionX >= 0) {
-                        this.posicionX -= this.pasos;
-                    }
-
+                    nuevaPosicionX -= this.pasos;
                 } else if (event.key == "w" || event.key == 'ArrowUp') {
-
-                    if (this.posicionYJugador >= 0) {
-                        this.posicionYJugador -= this.pasos;
-                    }
-
+                    nuevaPosicionY -= this.pasos;
                 } else if (event.key == "s" || event.key == 'ArrowDown') {
-
-                    if (this.posicionYJugador + img.offsetHeight <= window.innerHeight) {
-                        this.posicionYJugador += this.pasos;
-                    }
-
+                    nuevaPosicionY += this.pasos;
                 }
-
-                img.style.left = `${this.posicionX}px`;
-                img.style.top = `${this.posicionYJugador}px`;
+    
+                if (
+                    nuevaPosicionX >= 0 &&
+                    nuevaPosicionX + imgRect.width <= divRect.width &&
+                    nuevaPosicionY >= 0 &&
+                    nuevaPosicionY + imgRect.height <= divRect.height
+                ) {
+                    this.posicionX = nuevaPosicionX;
+                    this.posicionYJugador = nuevaPosicionY;
+    
+                    img.style.left = `${this.posicionX}px`;
+                    img.style.top = `${this.posicionYJugador}px`;
+                }
             });
-
         }
     };
-
+    
 
     generarCarroEnemigo = (img) => {
         let div = document.getElementById("carretera");
@@ -140,7 +140,8 @@ class Carro {
             let y = 0;
             let imgobstaculo = document.createElement("img");
             imgobstaculo.src = this.generarCarroEnemigoAleatorio();
-            imgobstaculo.style.width = "122px";
+            imgobstaculo.style.width = "150px";
+            imgobstaculo.style.height = "150px";
             imgobstaculo.style.top = y + "px";
             imgobstaculo.style.position = "absolute";
             imgobstaculo.style.left = x + "px";
@@ -149,7 +150,7 @@ class Carro {
 
             setInterval(() => {
                 y += 25;
-                if (y >= window.innerHeight - 100) {
+                if (y >= window.innerHeight - 130) {
                     div.removeChild(imgobstaculo);
                 } else {
                     imgobstaculo.style.top = y + "px";
@@ -183,24 +184,33 @@ class Carro {
 
     mostrarPorcentajeVida() {
         let div = document.getElementById("daño");
-        if (this.vidas >= 0 && this.vidas <= 100) {
-            setInterval(() => {
-                div.innerHTML = `<h1>DAÑO RECIBIDO: ${this.vidas}</h1>`;
-            }, 150)
-        } else {
 
-        }
+        setInterval(() => {
+            if (this.vidas >= 0 && this.vidas <= 100) {
+                if(this.vidas<=0){
+                    this.vidas=0
+                }
+                div.innerHTML = `<h1>DAÑO RECIBIDO: ${this.vidas}</h1>`;
+            }
+
+
+        }, 150)
+
 
 
     }
 
     finPartida() {
-
-        if (this.vidas <= 0) {
+        if (this.vidas <= 0 && this.partidaTerminada == false) {
+            this.partidaTerminada = true; // Bandera para indicar que la partida ha terminado
             alert("La partida ha terminado");
-            window.location.href = 'menuInicio.html '
+            setTimeout(()=>{
+                window.location.href = 'menuInicio.html';
+            },1500)
+           
         }
     }
+
 
     posicionAleatoriaX() {
         let div = document.getElementById("carretera");
@@ -209,9 +219,7 @@ class Carro {
 
     generarCarroEnemigoAleatorio() {
         let arrayImg = [
-            "/Resources/Gameplay/Carro enemigo 1.png",
-            "/Resources/Gameplay/Carro enemigo 2.jpeg",
-            "/Resources/Gameplay/Carro enemigo 3.jpeg",
+         
             "/Resources/Gameplay/Carro enemigo 4.jpeg",
             "/Resources/Gameplay/Carro enemigo 5.jpeg",
             "/Resources/Gameplay/Carro enemigo 6.jpeg",

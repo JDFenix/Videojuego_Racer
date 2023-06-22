@@ -1,20 +1,24 @@
-class Sonido{
-    
- sonidoInicio() {
+class Sonido {
 
-    let audioInicio = document.createElement("audio")
-    let audioFondo = document.createElement("audio")
+    sonidoInicio() {
 
-    audioInicio.src = 'Resources/sounds/winsquare-6993.mp3';
-    audioFondo.src = 'Resources/sounds/8bit-music-for-game-68698.mp3';
+        let audioInicio = document.createElement("audio")
+        let audioFondo = document.createElement("audio")
 
-    document.body.appendChild(audioInicio)
-    document.body.appendChild(audioFondo)
+        audioInicio.src = 'Resources/sounds/winsquare-6993.mp3';
+        audioFondo.src = 'Resources/sounds/8bit-music-for-game-68698.mp3';
 
-    audioInicio.play();
+        document.body.appendChild(audioInicio)
+        document.body.appendChild(audioFondo)
 
-    setInterval(function () {
-        audioFondo.play()
-    }, 2500)
-}
+        audioInicio.play();
+
+        setInterval(function () {
+            audioFondo.play()
+        }, 2500)
+
+
+    }
+
+   
 }

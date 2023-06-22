@@ -1,7 +1,5 @@
  .boton{
-    
-            
-               
+      
             font-family:cursive;
             font-weight: 900;
             background-color: chartreuse;            
@@ -11,8 +9,6 @@
             display: inline-block;
             margin: 10px px;
             color:darkblue;
-            
-            
         }
         .boton:hover{
             background-color: darkseagreen;
@@ -32,7 +28,6 @@
         body{
             background-repeat: no-repeat;
             background-size: cover;
-            
            
         }
         .titulo{
